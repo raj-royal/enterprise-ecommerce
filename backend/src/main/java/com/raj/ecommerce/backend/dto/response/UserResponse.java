@@ -4,6 +4,7 @@ package com.raj.ecommerce.backend.dto.response;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,4 +26,6 @@ public class UserResponse {
     private Boolean enabled;
 
     private LocalDateTime createdAt;
+
+    private Set<String> roles;
 }

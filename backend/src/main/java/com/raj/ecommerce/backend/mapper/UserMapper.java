@@ -4,6 +4,9 @@ import com.raj.ecommerce.backend.dto.request.RegisterRequest;
 import com.raj.ecommerce.backend.dto.response.UserResponse;
 import com.raj.ecommerce.backend.entity.User;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class UserMapper {
 
     private UserMapper() {
@@ -21,8 +24,12 @@ public class UserMapper {
 
         return user;
     }
-
     public static UserResponse toResponse(User user) {
+
+        Set<String> roles = user.getRoles()
+                .stream()
+                .map(role -> role.getName().name())
+                .collect(Collectors.toSet());
 
         return UserResponse.builder()
                 .id(user.getId())
@@ -32,6 +39,7 @@ public class UserMapper {
                 .phoneNumber(user.getPhoneNumber())
                 .enabled(user.getEnabled())
                 .createdAt(user.getCreatedAt())
+                .roles(roles)
                 .build();
     }
 }
