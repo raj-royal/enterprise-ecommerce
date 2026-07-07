@@ -9,6 +9,7 @@ import com.raj.ecommerce.backend.dto.response.UserResponse;
 import com.raj.ecommerce.backend.service.interfaces.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,9 +27,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthResponse login(
+    public ResponseEntity<AuthResponse> login(
             @Valid @RequestBody LoginRequest request) {
 
-        return userService.login(request);
+        return ResponseEntity.ok(userService.login(request));
     }
 }
