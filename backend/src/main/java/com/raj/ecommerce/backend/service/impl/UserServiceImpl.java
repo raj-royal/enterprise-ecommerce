@@ -180,6 +180,19 @@ public class UserServiceImpl implements UserService {
         return UserMapper.toResponse(user);
     }
 
+    @Override
+    public void deleteCurrentUser() {
 
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
+
+        String email = authentication.getName();
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found"));
+
+        userRepository.delete(user);
+    }
 
 }

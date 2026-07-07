@@ -22,6 +22,8 @@ public interface UserService {
 
     UserResponse changePassword(ChangePasswordRequest request);
 
+    void deleteCurrentUser();
+
 
 
 

@@ -38,4 +38,12 @@ public class UserController {
                 userService.changePassword(request)
         );
     }
+
+    @DeleteMapping("/me")
+    public ResponseEntity<String> deleteCurrentUser() {
+
+        userService.deleteCurrentUser();
+
+        return ResponseEntity.ok("User account deleted successfully.");
+    }
 }
